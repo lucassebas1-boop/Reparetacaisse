@@ -282,6 +282,8 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 .tarif-link-btn{background:none;border:none;color:var(--text-secondary);font:inherit;font-size:0.88rem;cursor:pointer;padding:6px 4px;}
 .tarif-link-btn:hover{color:var(--text-primary);}
 .tarif-footnote{margin-top:14px;color:var(--text-secondary);font-size:0.84rem;line-height:1.5;}
+.tarif-city-feedback{margin-top:12px;font-size:0.88rem;color:var(--text-secondary);}
+.tarif-city-feedback.ok{color:var(--accent);font-weight:600;}
 .tarif-callback{margin-top:18px;padding:18px;border-radius:14px;background:var(--bg-surface-2);border:1px solid var(--border-subtle);}
 .tarif-callback-label{display:block;font-size:0.86rem;font-weight:600;color:var(--text-primary);margin-bottom:10px;}
 .tarif-callback-row{display:flex;gap:10px;}
@@ -548,15 +550,12 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 <div class="tarif-question" data-step="3">
 <span class="tarif-q-label">Étape 3 sur 4</span>
 <h4 class="tarif-q-title">Où se déroule l'intervention ?</h4>
-<p class="tarif-q-sub">La distance ajuste automatiquement le déplacement.</p>
+<p class="tarif-q-sub">Indiquez votre ville : les frais de déplacement sont calculés automatiquement.</p>
 <div class="tarif-dual">
 <div>
-<label class="tarif-q-label" for="tarifDistance">Zone</label>
-<select id="tarifDistance" class="tarif-select">
-<option value="0">0 à 15 km · inclus</option>
-<option value="20">15 à 30 km · +20€</option>
-<option value="40">30 à 50 km · +40€</option>
-</select>
+<label class="tarif-q-label" for="tarifCity">Votre ville</label>
+<input class="tarif-input" id="tarifCity" type="text" list="tarifCityList" placeholder="Ex : Montreuil" autocomplete="off" />
+<datalist id="tarifCityList"></datalist>
 </div>
 <div>
 <label class="tarif-q-label" for="tarifUrgency">Priorité</label>
@@ -566,6 +565,7 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 </select>
 </div>
 </div>
+<div class="tarif-city-feedback" id="tarifCityFeedback">Renseignez votre ville pour estimer le déplacement.</div>
 <div class="tarif-nav">
 <button class="tarif-link-btn" type="button" data-back="2">← Revenir</button>
 <button class="tarif-btn tarif-btn-primary" type="button" id="tarifNextToResult" style="flex:none;padding:0 22px;min-height:44px">Voir mon estimation →</button>
@@ -821,6 +821,84 @@ if (callBtn) {
   var PHONE_INTL = '33669328151';
   var PHONE_DISPLAY = '+33669328151';
 
+  // Point de départ des interventions (jamais affiché au client)
+  var BASE = [48.8836, 2.5361];
+  var ROAD_FACTOR = 1.25; // approximation trajet routier vs vol d'oiseau
+
+  var CITIES = {
+    "Paris":[48.857,2.352],"Gagny":[48.884,2.536],"Chelles":[48.881,2.590],"Montfermeil":[48.898,2.566],
+    "Clichy-sous-Bois":[48.910,2.553],"Le Raincy":[48.897,2.523],"Villemomble":[48.884,2.508],
+    "Rosny-sous-Bois":[48.871,2.483],"Neuilly-Plaisance":[48.862,2.506],"Neuilly-sur-Marne":[48.854,2.549],
+    "Gournay-sur-Marne":[48.862,2.578],"Noisy-le-Grand":[48.848,2.553],"Bondy":[48.902,2.483],
+    "Les Pavillons-sous-Bois":[48.907,2.503],"Livry-Gargan":[48.919,2.535],"Sevran":[48.938,2.533],
+    "Aulnay-sous-Bois":[48.934,2.494],"Le Blanc-Mesnil":[48.939,2.461],"Drancy":[48.923,2.445],
+    "Bobigny":[48.907,2.439],"Noisy-le-Sec":[48.891,2.460],"Romainville":[48.884,2.435],
+    "Les Lilas":[48.880,2.416],"Bagnolet":[48.869,2.418],"Montreuil":[48.864,2.443],"Pantin":[48.895,2.401],
+    "Le Pré-Saint-Gervais":[48.885,2.404],"Aubervilliers":[48.914,2.383],"Saint-Denis":[48.936,2.357],
+    "Saint-Ouen-sur-Seine":[48.912,2.334],"La Courneuve":[48.929,2.396],"Le Bourget":[48.934,2.424],
+    "Stains":[48.950,2.385],"Épinay-sur-Seine":[48.954,2.309],"Villepinte":[48.955,2.541],
+    "Tremblay-en-France":[48.978,2.568],"Vaujours":[48.930,2.575],"Coubron":[48.916,2.570],
+    "Vincennes":[48.847,2.439],"Saint-Mandé":[48.842,2.419],"Fontenay-sous-Bois":[48.851,2.474],
+    "Nogent-sur-Marne":[48.837,2.483],"Le Perreux-sur-Marne":[48.842,2.503],"Bry-sur-Marne":[48.841,2.522],
+    "Villiers-sur-Marne":[48.826,2.545],"Champigny-sur-Marne":[48.817,2.516],"Chennevières-sur-Marne":[48.798,2.534],
+    "Saint-Maur-des-Fossés":[48.799,2.494],"Joinville-le-Pont":[48.821,2.463],"Maisons-Alfort":[48.802,2.437],
+    "Alfortville":[48.805,2.420],"Charenton-le-Pont":[48.822,2.416],"Créteil":[48.790,2.455],
+    "Bonneuil-sur-Marne":[48.774,2.487],"Sucy-en-Brie":[48.771,2.523],"Boissy-Saint-Léger":[48.752,2.512],
+    "Le Plessis-Trévise":[48.811,2.572],"La Queue-en-Brie":[48.787,2.578],"Ormesson-sur-Marne":[48.785,2.540],
+    "Vitry-sur-Seine":[48.787,2.392],"Ivry-sur-Seine":[48.813,2.384],"Villejuif":[48.792,2.360],
+    "Choisy-le-Roi":[48.763,2.409],"Thiais":[48.765,2.392],"Orly":[48.743,2.392],
+    "Villeneuve-Saint-Georges":[48.732,2.445],"Le Kremlin-Bicêtre":[48.810,2.362],"Cachan":[48.792,2.332],
+    "Arcueil":[48.804,2.336],"Gentilly":[48.813,2.344],"Fresnes":[48.755,2.325],
+    "Boulogne-Billancourt":[48.835,2.240],"Neuilly-sur-Seine":[48.885,2.269],"Levallois-Perret":[48.893,2.288],
+    "Clichy":[48.904,2.306],"Asnières-sur-Seine":[48.911,2.285],"Courbevoie":[48.897,2.256],
+    "Puteaux":[48.885,2.239],"Nanterre":[48.892,2.207],"Rueil-Malmaison":[48.878,2.181],
+    "Suresnes":[48.870,2.229],"Colombes":[48.923,2.254],"Gennevilliers":[48.933,2.294],
+    "Issy-les-Moulineaux":[48.824,2.270],"Vanves":[48.822,2.290],"Malakoff":[48.817,2.300],
+    "Montrouge":[48.816,2.320],"Clamart":[48.800,2.263],"Meudon":[48.812,2.238],"Sèvres":[48.823,2.211],
+    "Saint-Cloud":[48.845,2.217],"Bagneux":[48.796,2.309],"Châtillon":[48.804,2.288],
+    "Bourg-la-Reine":[48.780,2.315],"Sceaux":[48.778,2.290],"Antony":[48.754,2.297],
+    "Châtenay-Malabry":[48.766,2.266],"Fontenay-aux-Roses":[48.789,2.290],
+    "Argenteuil":[48.947,2.247],"Sarcelles":[48.997,2.378],"Garges-lès-Gonesse":[48.972,2.400],
+    "Gonesse":[48.986,2.449],"Goussainville":[49.013,2.474],"Villiers-le-Bel":[49.009,2.400],
+    "Enghien-les-Bains":[48.970,2.308],"Ermont":[48.990,2.258],"Franconville":[48.989,2.230],
+    "Taverny":[49.026,2.217],"Cergy":[49.036,2.063],"Pontoise":[49.051,2.101],"Roissy-en-France":[49.004,2.517],
+    "Torcy":[48.850,2.653],"Noisiel":[48.848,2.623],"Lognes":[48.836,2.633],"Champs-sur-Marne":[48.853,2.603],
+    "Vaires-sur-Marne":[48.876,2.640],"Brou-sur-Chantereine":[48.887,2.638],"Courtry":[48.919,2.605],
+    "Bussy-Saint-Georges":[48.842,2.700],"Lagny-sur-Marne":[48.871,2.710],"Meaux":[48.960,2.879],
+    "Villeparisis":[48.942,2.615],"Mitry-Mory":[48.978,2.616],"Claye-Souilly":[48.945,2.686],
+    "Pontault-Combault":[48.798,2.605],"Roissy-en-Brie":[48.791,2.652],"Ozoir-la-Ferrière":[48.767,2.677],
+    "Brie-Comte-Robert":[48.692,2.610],"Melun":[48.540,2.660],"Fontainebleau":[48.404,2.702],
+    "Versailles":[48.804,2.130],"Saint-Germain-en-Laye":[48.898,2.094],"Sartrouville":[48.938,2.191],
+    "Houilles":[48.926,2.189],"Poissy":[48.929,2.046],"Conflans-Sainte-Honorine":[48.999,2.096],
+    "Mantes-la-Jolie":[48.990,1.717],"Massy":[48.731,2.271],"Palaiseau":[48.714,2.246],
+    "Athis-Mons":[48.705,2.390],"Juvisy-sur-Orge":[48.689,2.378],"Savigny-sur-Orge":[48.679,2.348],
+    "Viry-Châtillon":[48.672,2.375],"Évry-Courcouronnes":[48.630,2.430],"Corbeil-Essonnes":[48.614,2.482],
+    "Sainte-Geneviève-des-Bois":[48.637,2.319],"Brétigny-sur-Orge":[48.611,2.305]
+  };
+
+  function normalizeCity(s){
+    return s.toLowerCase().normalize('NFD')
+      .replace(/[̀-ͯ]/g,'')
+      .replace(/[''`]/g,'-').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'')
+      .replace(/^st-/,'saint-').replace(/^ste-/,'sainte-');
+  }
+  var CITY_LOOKUP = {};
+  Object.keys(CITIES).forEach(function(name){ CITY_LOOKUP[normalizeCity(name)] = name; });
+
+  function haversineKm(a, b){
+    var R = 6371, rad = Math.PI/180;
+    var dLat = (b[0]-a[0])*rad, dLon = (b[1]-a[1])*rad;
+    var s = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(a[0]*rad)*Math.cos(b[0]*rad)*Math.sin(dLon/2)*Math.sin(dLon/2);
+    return 2*R*Math.asin(Math.sqrt(s));
+  }
+
+  function travelFee(km){
+    if (km <= 15) return { fee:0,  label:'inclus' };
+    if (km <= 30) return { fee:20, label:'+20€' };
+    if (km <= 50) return { fee:40, label:'+40€' };
+    return { fee:60, label:'+60€ · selon disponibilité' };
+  }
+
   var serviceMap = {
     diag:   { label:'Diagnostic à domicile', price:60,  title:'Commencer par un diagnostic', text:"Quand le besoin est encore flou ou qu'un voyant est présent, commencer par un diagnostic rassure le client et évite de promettre une solution trop tôt." },
     e85:    { label:'Reprogrammation E85', price:280, title:'Orientation économie carburant', text:"Le besoin principal est de réduire le coût d'usage. La cartographie E85 devient donc la recommandation logique si le véhicule est compatible." },
@@ -831,13 +909,20 @@ if (callBtn) {
 
   var root = document.getElementById('tarif-devis');
   if(!root) return;
-  var state = { need:null, reco:'diag', vehicleAdj:0, vehicleLabel:'', distance:0, urgency:0, vehicleText:'' };
+  var state = { need:null, reco:'diag', vehicleAdj:0, vehicleLabel:'', distance:0, distanceKm:null, city:'', cityKnown:false, urgency:0, vehicleText:'' };
 
   var questions = Array.prototype.slice.call(root.querySelectorAll('.tarif-question'));
   var progressBar = root.querySelector('#tarifProgressBar');
   var needChoices = Array.prototype.slice.call(root.querySelectorAll('#tarifNeedChoices .tarif-chip'));
   var vehicleChoices = Array.prototype.slice.call(root.querySelectorAll('#tarifVehicleChoices .tarif-chip'));
-  var distanceEl = root.querySelector('#tarifDistance');
+  var cityEl = root.querySelector('#tarifCity');
+  var cityFeedbackEl = root.querySelector('#tarifCityFeedback');
+  var cityListEl = document.getElementById('tarifCityList');
+  Object.keys(CITIES).sort(function(a,b){ return a.localeCompare(b,'fr'); }).forEach(function(name){
+    var opt = document.createElement('option');
+    opt.value = name;
+    cityListEl.appendChild(opt);
+  });
   var urgencyEl = root.querySelector('#tarifUrgency');
   var vehicleTextEl = root.querySelector('#tarifVehicleText');
   var recoLabel = root.querySelector('#tarifRecoLabel');
@@ -863,6 +948,13 @@ if (callBtn) {
     return sign + n + '€';
   }
 
+  function cityLine(){
+    if (!state.city) return 'Non renseignée';
+    if (state.cityKnown && state.distanceKm != null) return state.city + ' (~' + state.distanceKm + ' km)';
+    return state.city + ' (distance à confirmer)';
+  }
+
+  var lastMsg = '';
   function buildMessage(service, total){
     return [
       'Bonjour, je souhaite une estimation personnalisée.',
@@ -870,10 +962,33 @@ if (callBtn) {
       'Prestation recommandée : ' + service.label,
       'Véhicule : ' + (state.vehicleText || 'Non renseigné'),
       'Complexité : ' + (state.vehicleLabel || 'Non précisée'),
-      'Zone : ' + distanceEl.options[distanceEl.selectedIndex].text,
+      'Ville : ' + cityLine(),
       'Priorité : ' + urgencyEl.options[urgencyEl.selectedIndex].text,
       'Total estimatif : ' + total + '€'
     ].join('\n');
+  }
+
+  function updateCity(){
+    var raw = cityEl.value.trim();
+    state.city = raw;
+    if (!raw) {
+      state.cityKnown = false; state.distanceKm = null; state.distance = 0;
+      cityFeedbackEl.textContent = 'Renseignez votre ville pour estimer le déplacement.';
+      cityFeedbackEl.className = 'tarif-city-feedback';
+      return;
+    }
+    var match = CITY_LOOKUP[normalizeCity(raw)];
+    if (match) {
+      var km = Math.round(haversineKm(BASE, CITIES[match]) * ROAD_FACTOR);
+      var t = travelFee(km);
+      state.city = match; state.cityKnown = true; state.distanceKm = km; state.distance = t.fee;
+      cityFeedbackEl.textContent = match + ' · ~' + km + ' km · déplacement ' + t.label;
+      cityFeedbackEl.className = 'tarif-city-feedback ok';
+    } else {
+      state.cityKnown = false; state.distanceKm = null; state.distance = 20;
+      cityFeedbackEl.textContent = 'Ville non reconnue — déplacement estimé +20€, confirmé lors du contact.';
+      cityFeedbackEl.className = 'tarif-city-feedback';
+    }
   }
 
   function updateSummary(){
@@ -890,7 +1005,8 @@ if (callBtn) {
     smartTextEl.textContent = service.text;
 
     var msg = buildMessage(service, total);
-    waBtn.href = 'https://wa.me/' + PHONE_INTL + '?text=' + encodeURIComponent(msg);
+    lastMsg = msg;
+    waBtn.href = 'https://api.whatsapp.com/send?phone=' + PHONE_INTL + '&text=' + encodeURIComponent(msg);
     var isIOS = /iP(hone|od|ad)/.test(navigator.userAgent || '');
     var smsSep = isIOS ? '&' : '?';
     smsBtn.href = 'sms:' + PHONE_DISPLAY + smsSep + 'body=' + encodeURIComponent(msg);
@@ -918,7 +1034,8 @@ if (callBtn) {
     });
   });
 
-  distanceEl.addEventListener('change', function(){ state.distance = Number(distanceEl.value); updateSummary(); });
+  cityEl.addEventListener('input', function(){ updateCity(); updateSummary(); });
+  cityEl.addEventListener('change', function(){ updateCity(); updateSummary(); });
   urgencyEl.addEventListener('change', function(){ state.urgency = Number(urgencyEl.value); updateSummary(); });
   vehicleTextEl.addEventListener('input', function(){ state.vehicleText = vehicleTextEl.value.trim(); updateSummary(); });
 
@@ -929,12 +1046,13 @@ if (callBtn) {
   });
 
   restartBtn.addEventListener('click', function(){
-    state = { need:null, reco:'diag', vehicleAdj:0, vehicleLabel:'', distance:0, urgency:0, vehicleText:'' };
+    state = { need:null, reco:'diag', vehicleAdj:0, vehicleLabel:'', distance:0, distanceKm:null, city:'', cityKnown:false, urgency:0, vehicleText:'' };
     needChoices.forEach(function(x){ x.classList.remove('active'); });
     vehicleChoices.forEach(function(x){ x.classList.remove('active'); });
-    distanceEl.value = '0';
+    cityEl.value = '';
     urgencyEl.value = '0';
     vehicleTextEl.value = '';
+    updateCity();
     updateSummary();
     showStep(1);
   });
@@ -977,8 +1095,8 @@ if (callBtn) {
           callbackStatus.textContent = "Erreur d'envoi, contactez-nous directement par WhatsApp.";
         });
       } else {
-        var msg = 'Bonjour, merci de me rappeler au ' + phone + ' (demande via le simulateur de tarification).';
-        window.open('https://wa.me/' + PHONE_INTL + '?text=' + encodeURIComponent(msg), '_blank');
+        var msg = 'Bonjour, merci de me rappeler au ' + phone + '.\n\n' + lastMsg;
+        window.open('https://api.whatsapp.com/send?phone=' + PHONE_INTL + '&text=' + encodeURIComponent(msg), '_blank');
         callbackStatus.textContent = 'Ouverture de WhatsApp avec votre numéro pré-rempli...';
         callbackStatus.className = 'tarif-callback-status success';
       }
