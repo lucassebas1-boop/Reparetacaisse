@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lucassebas1-boop.github.io/Reparetacaisse/sitemap.xml

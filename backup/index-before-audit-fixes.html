@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reparetacaisse | Diagnostic & reprogrammation à domicile</title>
-<meta name="description" content="Diagnostic auto, reprogrammation Stage 1 et conversion E85 à domicile en Île-de-France. Devis gratuit dès 60€, intervention rapide à Gagny, Paris, Bondy.">
-<link rel="canonical" href="https://lucassebas1-boop.github.io/Reparetacaisse/">
+<title>Reparetacaisse | Diagnostic auto & reprogrammation moteur à domicile - Île-de-France</title>
+<meta name="description" content="Diagnostic auto, reprogrammation moteur Stage 1 et conversion E85 à domicile en Île-de-France. Un technicien équipé se déplace chez vous à Gagny, Paris, Bondy, Montreuil et toute la petite couronne. Devis gratuit, diagnostic dès 60€.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Reparetacaisse — Diagnostic auto & reprogrammation moteur à domicile">
@@ -37,8 +36,6 @@
     {"@type": "AdministrativeArea", "name": "Seine-Saint-Denis"},
     {"@type": "AdministrativeArea", "name": "Val-de-Marne"}
   ],
-  "url": "https://lucassebas1-boop.github.io/Reparetacaisse/",
-  "image": "https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/09d33d47-67a5-4790-ab42-fd0ea8797d9c.png",
   "priceRange": "60€-450€",
   "sameAs": ["https://www.tiktok.com/@reparetacaisse"],
   "hasOfferCatalog": {
@@ -53,7 +50,6 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -67,7 +63,6 @@
   --text-primary:var(--black); --text-secondary:var(--gray);
   --border-subtle:rgba(0,0,0,0.06); --border-soft:rgba(0,0,0,0.1);
   --btn-neutral-bg:var(--black); --btn-neutral-text:var(--white);
-  --accent-text:var(--accent);
 }
 @media (prefers-color-scheme:dark){
   :root{
@@ -78,7 +73,6 @@
     --text-primary:#f2f1ee; --text-secondary:#9a9ca3;
     --border-subtle:rgba(255,255,255,0.08); --border-soft:rgba(255,255,255,0.14);
     --btn-neutral-bg:#f2f1ee; --btn-neutral-text:#121214;
-    --accent-text:var(--accent-light);
   }
 }
 :root[data-theme="dark"]{
@@ -89,7 +83,6 @@
   --text-primary:#f2f1ee; --text-secondary:#9a9ca3;
   --border-subtle:rgba(255,255,255,0.08); --border-soft:rgba(255,255,255,0.14);
   --btn-neutral-bg:#f2f1ee; --btn-neutral-text:#121214;
-  --accent-text:var(--accent-light);
 }
 :root[data-theme="light"]{
   --accent:#7a1f2b; --accent-light:#9c2c3a; --accent-rgb:122,31,43;
@@ -99,7 +92,6 @@
   --text-primary:var(--black); --text-secondary:var(--gray);
   --border-subtle:rgba(0,0,0,0.06); --border-soft:rgba(0,0,0,0.1);
   --btn-neutral-bg:var(--black); --btn-neutral-text:var(--white);
-  --accent-text:var(--accent);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -119,16 +111,16 @@ nav{display:flex;align-items:center;justify-content:space-between;max-width:1180
 .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:var(--accent);transition:width var(--transition);}
 .nav-links a:hover{color:var(--text-primary);}
 .nav-links a:hover::after{width:100%;}
-.theme-toggle{width:44px;height:44px;border-radius:50%;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--text-primary);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0;}
+.theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--text-primary);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0;}
 .theme-toggle:hover{border-color:var(--accent);color:var(--accent);}
 .cta-btn{background:var(--btn-neutral-bg);color:var(--btn-neutral-text);padding:12px 26px;border-radius:999px;font-weight:500;font-size:0.9rem;transition:var(--transition);border:1px solid var(--btn-neutral-bg);}
 .cta-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-2px);}
-.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;padding:0;border:none;background:none;cursor:pointer;flex-shrink:0;}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
 .burger span{width:24px;height:2px;background:var(--text-primary);}
 
 .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(180deg,var(--hero-grad-1) 0%,var(--hero-grad-2) 100%);position:relative;padding-top:100px;}
 .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;}
-.hero-tag{display:inline-block;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent-text);font-weight:600;margin-bottom:18px;border:1px solid rgba(var(--accent-rgb),0.25);padding:6px 14px;border-radius:999px;background:rgba(var(--accent-rgb),0.04);}
+.hero-tag{display:inline-block;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px;border:1px solid rgba(var(--accent-rgb),0.25);padding:6px 14px;border-radius:999px;background:rgba(var(--accent-rgb),0.04);}
 .hero h1{font-size:3.4rem;line-height:1.12;margin-bottom:22px;color:var(--text-primary);}
 .hero h1 em{color:var(--accent);font-style:normal;}
 .hero p{font-size:1.08rem;color:var(--text-secondary);max-width:520px;margin-bottom:34px;}
@@ -150,7 +142,7 @@ nav{display:flex;align-items:center;justify-content:space-between;max-width:1180
 .fade-up.visible{opacity:1;transform:translateY(0);}
 
 .section-head{max-width:640px;margin:0 auto 60px;text-align:center;}
-.section-tag{color:var(--accent-text);text-transform:uppercase;font-size:0.78rem;letter-spacing:0.1em;font-weight:600;margin-bottom:12px;display:block;}
+.section-tag{color:var(--accent);text-transform:uppercase;font-size:0.78rem;letter-spacing:0.1em;font-weight:600;margin-bottom:12px;display:block;}
 .section-head h2{font-size:2.2rem;color:var(--text-primary);margin-bottom:14px;}
 .section-head p{color:var(--text-secondary);font-size:1rem;}
 
@@ -166,8 +158,8 @@ nav{display:flex;align-items:center;justify-content:space-between;max-width:1180
 .why-visual img{width:100%;height:100%;object-fit:cover;border-radius:24px;}
 .why-list{display:flex;flex-direction:column;gap:26px;}
 .why-item{display:flex;gap:18px;align-items:flex-start;}
-.why-num{min-width:44px;height:44px;border-radius:50%;background:var(--bg-surface-2);color:var(--accent-text);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem;flex-shrink:0;}
-.why-item h3{font-size:1.05rem;margin-bottom:5px;color:var(--text-primary);}
+.why-num{min-width:44px;height:44px;border-radius:50%;background:var(--bg-surface-2);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem;flex-shrink:0;}
+.why-item h4{font-size:1.05rem;margin-bottom:5px;color:var(--text-primary);}
 .why-item p{color:var(--text-secondary);font-size:0.92rem;}
 
 .stats-section{background:var(--bg-elevated);color:#fff;}
@@ -182,7 +174,7 @@ nav{display:flex;align-items:center;justify-content:space-between;max-width:1180
 .stars{color:var(--accent);font-size:0.95rem;margin-bottom:14px;}
 .testi-card p{color:var(--text-primary);font-size:0.94rem;margin-bottom:18px;font-style:italic;}
 .testi-author{display:flex;align-items:center;gap:12px;}
-.testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--bg-surface-2);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--accent-text);font-size:0.85rem;}
+.testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--bg-surface-2);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--accent);font-size:0.85rem;}
 .testi-author strong{font-size:0.9rem;display:block;}
 .testi-author span{font-size:0.78rem;color:var(--text-secondary);}
 
@@ -203,12 +195,12 @@ nav{display:flex;align-items:center;justify-content:space-between;max-width:1180
 .zone-map .pin{position:absolute;width:14px;height:14px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 6px rgba(var(--accent-rgb),0.15);}
 
 .faq-list{max-width:760px;margin:0 auto;}
-.faq-item{border-bottom:1px solid var(--border-subtle);}
-.faq-q{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;min-height:44px;padding:22px 0;margin:0;border:none;background:none;font:inherit;text-align:left;color:inherit;font-weight:600;font-size:1.02rem;cursor:pointer;}
-.faq-q .icon{transition:transform var(--transition);color:var(--accent);font-size:1.2rem;flex-shrink:0;}
-.faq-q[aria-expanded="true"] .icon{transform:rotate(45deg);}
+.faq-item{border-bottom:1px solid var(--border-subtle);padding:22px 0;cursor:pointer;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.02rem;}
+.faq-q .icon{transition:transform var(--transition);color:var(--accent);font-size:1.2rem;}
+.faq-item.active .faq-q .icon{transform:rotate(45deg);}
 .faq-a{max-height:0;overflow:hidden;transition:max-height var(--transition);}
-.faq-a p{color:var(--text-secondary);padding-top:14px;padding-bottom:22px;font-size:0.94rem;line-height:1.7;}
+.faq-a p{color:var(--text-secondary);padding-top:14px;font-size:0.94rem;line-height:1.7;}
 
 .contact-section{background:linear-gradient(135deg, var(--bg-elevated), #1c1c20);color:#fff;border-radius:28px;margin:0 24px;padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
 .contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 10%, rgba(var(--accent-rgb),0.4), transparent 55%);}
@@ -234,15 +226,12 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
   .hero h1{font-size:2.4rem;}
   .nav-links{display:none;}
   .burger{display:flex;}
-  .cta-btn{display:none;}
   .tiktok-wrap{flex-direction:column;text-align:center;}
 }
 @media (max-width:600px){
   .services-grid{grid-template-columns:1fr;}
   section{padding:70px 0;}
   .contact-section{margin:0 12px;padding:60px 24px;}
-  nav{padding:14px 16px;gap:10px;}
-  .logo{font-size:1.15rem;}
 }
 
 .tarif-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:28px;align-items:start;margin-top:20px;}
@@ -255,7 +244,7 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 .tarif-wizard{background:var(--bg-surface);border-radius:var(--radius);padding:32px;border:1px solid var(--border-subtle);position:sticky;top:100px;}
 .tarif-wizard-head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px;}
 .tarif-wizard-head h3{margin:0;font-size:1.4rem;color:var(--text-primary);}
-.tarif-badge{padding:8px 14px;border-radius:999px;background:rgba(var(--accent-rgb),0.08);color:var(--accent-text);font-size:0.82rem;font-weight:600;white-space:nowrap;}
+.tarif-badge{padding:8px 14px;border-radius:999px;background:rgba(var(--accent-rgb),0.08);color:var(--accent);font-size:0.82rem;font-weight:600;white-space:nowrap;}
 .tarif-progress{height:6px;border-radius:999px;background:var(--bg-surface-2);overflow:hidden;margin:10px 0 24px;}
 .tarif-progress-bar{height:100%;width:25%;background:var(--accent);transition:width 0.3s ease;}
 .tarif-question{display:none;animation:tarifFade 0.3s ease;}
@@ -265,12 +254,12 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 .tarif-q-title{font-size:1.3rem;line-height:1.25;margin:0 0 10px;color:var(--text-primary);font-family:'Poppins',sans-serif;}
 .tarif-q-sub{color:var(--text-secondary);line-height:1.6;margin:0 0 18px;font-size:0.94rem;}
 .tarif-chips{display:grid;gap:10px;}
-.tarif-chip{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;width:100%;padding:16px 18px;border-radius:14px;background:var(--bg-surface-2);border:1px solid var(--border-subtle);font:inherit;text-align:left;color:inherit;cursor:pointer;transition:var(--transition);}
+.tarif-chip{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:14px;background:var(--bg-surface-2);border:1px solid var(--border-subtle);cursor:pointer;transition:var(--transition);}
 .tarif-chip:hover{transform:translateY(-2px);border-color:rgba(var(--accent-rgb),0.25);}
 .tarif-chip.active{background:rgba(var(--accent-rgb),0.06);border-color:var(--accent);}
 .tarif-chip-main strong{display:block;font-size:0.96rem;margin-bottom:4px;color:var(--text-primary);}
 .tarif-chip-main span{display:block;color:var(--text-secondary);font-size:0.86rem;line-height:1.4;}
-.tarif-chip-price{font-weight:700;font-size:0.9rem;color:var(--accent-text);white-space:nowrap;}
+.tarif-chip-price{font-weight:700;font-size:0.9rem;color:var(--accent);white-space:nowrap;}
 .tarif-dual{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .tarif-select,.tarif-input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--border-soft);background:var(--bg-surface);font:inherit;color:var(--text-primary);outline:none;transition:var(--transition);}
 .tarif-select:focus,.tarif-input:focus{border-color:var(--accent);}
@@ -317,18 +306,14 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 .legal-modal .legal-note{margin-top:28px;padding:16px;border-radius:12px;background:var(--bg-surface-2);color:var(--text-secondary);font-size:0.86rem;line-height:1.6;}
 .legal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:var(--bg-surface-2);border:none;cursor:pointer;font-size:1.1rem;color:var(--text-primary);transition:var(--transition);display:flex;align-items:center;justify-content:center;}
 .legal-close:hover{background:var(--btn-neutral-bg);color:var(--btn-neutral-text);}
-.footer-links button.legal-link{cursor:pointer;font:inherit;background:none;border:none;padding:0;color:var(--text-secondary);}
-.footer-links button.legal-link:hover{color:var(--text-primary);}
-.skip-link{position:absolute;top:-60px;left:12px;z-index:3000;background:var(--btn-neutral-bg);color:var(--btn-neutral-text);padding:12px 20px;border-radius:8px;font-weight:600;transition:top 0.2s ease;}
-.skip-link:focus{top:12px;}
+.footer-links a.legal-link{cursor:pointer;}
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Aller au contenu</a>
 <header id="header">
 <nav>
 <a href="#" class="logo">Reparetacaisse<span>.</span></a>
-<div class="nav-links" id="primary-navigation">
+<div class="nav-links">
 <a href="#services">Services</a>
 <a href="#pourquoi">Pourquoi nous</a>
 <a href="#avis">Avis</a>
@@ -339,11 +324,10 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 </div>
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Changer de thème">☾</button>
 <a href="#contact" class="cta-btn">Nous contacter</a>
-<button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+<div class="burger" id="burger"><span></span><span></span><span></span></div>
 </nav>
 </header>
 
-<main id="main-content">
 <section class="hero">
 <div class="container hero-grid">
 <div>
@@ -358,7 +342,7 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 </div>
 <div class="hero-visual fade-up">
 <div class="hero-visual-card">
-<img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e9ee77a7-5dd2-4449-bbfd-fb6141750450.png" alt="Icône chronomètre" width="44" height="44">
+<img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e9ee77a7-5dd2-4449-bbfd-fb6141750450.png" alt="Icône chronomètre">
 <div>
 <h4>Intervention moyenne</h4>
 <div class="val"><span class="count" data-target="45">0</span> min</div>
@@ -418,24 +402,24 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 </div>
 <div class="why-wrap">
 <div class="why-visual fade-up">
-<img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/ddaaca12-83fc-47ba-97cf-71d1d96924a6.png" alt="Technicien automobile en intervention mobile, ambiance lumineuse de jour" width="1024" height="1536" loading="lazy">
+<img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/ddaaca12-83fc-47ba-97cf-71d1d96924a6.png" alt="Technicien automobile en intervention mobile, ambiance lumineuse de jour">
 </div>
 <div class="why-list">
 <div class="why-item fade-up">
 <div class="why-num">01</div>
-<div><h3>Intervention à domicile</h3><p>Nous venons directement chez vous ou sur votre lieu de travail, partout en Île-de-France.</p></div>
+<div><h4>Intervention à domicile</h4><p>Nous venons directement chez vous ou sur votre lieu de travail, partout en Île-de-France.</p></div>
 </div>
 <div class="why-item fade-up">
 <div class="why-num">02</div>
-<div><h3>Matériel professionnel</h3><p>Outils de diagnostic et de reprogrammation de niveau atelier (KESS, AutoTuner, Renolink).</p></div>
+<div><h4>Matériel professionnel</h4><p>Outils de diagnostic et de reprogrammation de niveau atelier (KESS, AutoTuner, Renolink).</p></div>
 </div>
 <div class="why-item fade-up">
 <div class="why-num">03</div>
-<div><h3>Transparence totale</h3><p>Devis clair avant intervention, aucune mauvaise surprise sur la facture finale.</p></div>
+<div><h4>Transparence totale</h4><p>Devis clair avant intervention, aucune mauvaise surprise sur la facture finale.</p></div>
 </div>
 <div class="why-item fade-up">
 <div class="why-num">04</div>
-<div><h3>Suivi personnalisé</h3><p>Un interlocuteur unique du premier contact jusqu'à la fin de l'intervention.</p></div>
+<div><h4>Suivi personnalisé</h4><p>Un interlocuteur unique du premier contact jusqu'à la fin de l'intervention.</p></div>
 </div>
 </div>
 </div>
@@ -539,12 +523,12 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 <span class="tarif-q-label">Étape 1 sur 4</span>
 <h4 class="tarif-q-title">Quel est votre besoin principal ?</h4>
 <p class="tarif-q-sub">Choisissez l'objectif principal, le simulateur affine ensuite les prestations les plus cohérentes.</p>
-<div class="tarif-chips" id="tarifNeedChoices" role="group" aria-label="Besoin principal">
-<button type="button" class="tarif-chip" data-reco="stage1" data-label="Gagner en performances"><div class="tarif-chip-main"><strong>Gagner en performances</strong><span>Couple, reprise, agrément de conduite.</span></div><div class="tarif-chip-price">Stage 1</div></button>
-<button type="button" class="tarif-chip" data-reco="e85" data-label="Réduire le coût carburant"><div class="tarif-chip-main"><strong>Réduire le coût carburant</strong><span>Passage E85 avec cartographie sur mesure.</span></div><div class="tarif-chip-price">Éthanol</div></button>
-<button type="button" class="tarif-chip" data-reco="diag" data-label="Comprendre une panne ou un voyant"><div class="tarif-chip-main"><strong>Comprendre une panne ou un voyant</strong><span>Diagnostic à domicile avant décision technique.</span></div><div class="tarif-chip-price">Diagnostic</div></button>
-<button type="button" class="tarif-chip" data-reco="adblue" data-label="Traiter un souci AdBlue"><div class="tarif-chip-main"><strong>Traiter un souci AdBlue</strong><span>Orientation vers la solution la plus adaptée.</span></div><div class="tarif-chip-price">AdBlue off</div></button>
-<button type="button" class="tarif-chip" data-reco="fap" data-label="Traiter un souci FAP"><div class="tarif-chip-main"><strong>Traiter un souci FAP</strong><span>Solution ciblée selon configuration véhicule.</span></div><div class="tarif-chip-price">FAP off</div></button>
+<div class="tarif-chips" id="tarifNeedChoices">
+<div class="tarif-chip" data-reco="stage1" data-label="Gagner en performances"><div class="tarif-chip-main"><strong>Gagner en performances</strong><span>Couple, reprise, agrément de conduite.</span></div><div class="tarif-chip-price">Stage 1</div></div>
+<div class="tarif-chip" data-reco="e85" data-label="Réduire le coût carburant"><div class="tarif-chip-main"><strong>Réduire le coût carburant</strong><span>Passage E85 avec cartographie sur mesure.</span></div><div class="tarif-chip-price">Éthanol</div></div>
+<div class="tarif-chip" data-reco="diag" data-label="Comprendre une panne ou un voyant"><div class="tarif-chip-main"><strong>Comprendre une panne ou un voyant</strong><span>Diagnostic à domicile avant décision technique.</span></div><div class="tarif-chip-price">Diagnostic</div></div>
+<div class="tarif-chip" data-reco="adblue" data-label="Traiter un souci AdBlue"><div class="tarif-chip-main"><strong>Traiter un souci AdBlue</strong><span>Orientation vers la solution la plus adaptée.</span></div><div class="tarif-chip-price">AdBlue off</div></div>
+<div class="tarif-chip" data-reco="fap" data-label="Traiter un souci FAP"><div class="tarif-chip-main"><strong>Traiter un souci FAP</strong><span>Solution ciblée selon configuration véhicule.</span></div><div class="tarif-chip-price">FAP off</div></div>
 </div>
 </div>
 
@@ -552,13 +536,12 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 <span class="tarif-q-label">Étape 2 sur 4</span>
 <h4 class="tarif-q-title">Quel type de configuration avez-vous ?</h4>
 <p class="tarif-q-sub">Le niveau de complexité véhicule influence l'estimation.</p>
-<div class="tarif-chips" id="tarifVehicleChoices" role="group" aria-label="Type de configuration">
-<button type="button" class="tarif-chip" data-multiplier="0" data-label="Véhicule courant"><div class="tarif-chip-main"><strong>Véhicule courant</strong><span>Diesel / essence classique, intervention standard.</span></div><div class="tarif-chip-price">Base</div></button>
-<button type="button" class="tarif-chip" data-multiplier="40" data-label="Véhicule plus complexe"><div class="tarif-chip-main"><strong>Véhicule plus complexe</strong><span>Calculateur plus sensible, accès ou traitement plus long.</span></div><div class="tarif-chip-price">+40€</div></button>
-<button type="button" class="tarif-chip" data-multiplier="15" data-label="Je ne sais pas encore"><div class="tarif-chip-main"><strong>Je ne sais pas encore</strong><span>Le système reste prudent et propose une estimation intermédiaire.</span></div><div class="tarif-chip-price">+15€</div></button>
+<div class="tarif-chips" id="tarifVehicleChoices">
+<div class="tarif-chip" data-multiplier="0" data-label="Véhicule courant"><div class="tarif-chip-main"><strong>Véhicule courant</strong><span>Diesel / essence classique, intervention standard.</span></div><div class="tarif-chip-price">Base</div></div>
+<div class="tarif-chip" data-multiplier="40" data-label="Véhicule plus complexe"><div class="tarif-chip-main"><strong>Véhicule plus complexe</strong><span>Calculateur plus sensible, accès ou traitement plus long.</span></div><div class="tarif-chip-price">+40€</div></div>
+<div class="tarif-chip" data-multiplier="15" data-label="Je ne sais pas encore"><div class="tarif-chip-main"><strong>Je ne sais pas encore</strong><span>Le système reste prudent et propose une estimation intermédiaire.</span></div><div class="tarif-chip-price">+15€</div></div>
 </div>
 <div style="margin-top:12px">
-<label class="tarif-q-label" for="tarifVehicleText">Précisez votre véhicule (optionnel)</label>
 <input class="tarif-input" id="tarifVehicleText" type="text" placeholder="Ex : Audi A3 2.0 TDI 150" />
 </div>
 <div class="tarif-nav"><button class="tarif-link-btn" type="button" data-back="1">← Revenir</button></div>
@@ -641,24 +624,24 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 </div>
 <div class="faq-list">
 <div class="faq-item fade-up">
-<button type="button" class="faq-q" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1">Intervenez-vous vraiment à domicile ? <span class="icon" aria-hidden="true">+</span></button>
-<div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1"><p>Oui, l'ensemble de nos prestations de diagnostic et reprogrammation se font directement chez vous ou sur votre lieu de travail, en Île-de-France.</p></div>
+<div class="faq-q">Intervenez-vous vraiment à domicile ? <span class="icon">+</span></div>
+<div class="faq-a"><p>Oui, l'ensemble de nos prestations de diagnostic et reprogrammation se font directement chez vous ou sur votre lieu de travail, en Île-de-France.</p></div>
 </div>
 <div class="faq-item fade-up">
-<button type="button" class="faq-q" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2">La reprogrammation annule-t-elle la garantie constructeur ? <span class="icon" aria-hidden="true">+</span></button>
-<div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><p>Une reprogrammation peut impacter la garantie constructeur. Nous vous conseillons en toute transparence avant chaque intervention.</p></div>
+<div class="faq-q">La reprogrammation annule-t-elle la garantie constructeur ? <span class="icon">+</span></div>
+<div class="faq-a"><p>Une reprogrammation peut impacter la garantie constructeur. Nous vous conseillons en toute transparence avant chaque intervention.</p></div>
 </div>
 <div class="faq-item fade-up">
-<button type="button" class="faq-q" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3">Combien de temps dure un diagnostic ? <span class="icon" aria-hidden="true">+</span></button>
-<div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><p>Un diagnostic standard prend en moyenne 30 à 45 minutes selon le véhicule et la complexité de la panne.</p></div>
+<div class="faq-q">Combien de temps dure un diagnostic ? <span class="icon">+</span></div>
+<div class="faq-a"><p>Un diagnostic standard prend en moyenne 30 à 45 minutes selon le véhicule et la complexité de la panne.</p></div>
 </div>
 <div class="faq-item fade-up">
-<button type="button" class="faq-q" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4">Achetez-vous tous les types de véhicules ? <span class="icon" aria-hidden="true">+</span></button>
-<div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><p>Nous étudions chaque véhicule au cas par cas : état mécanique, kilométrage et documents sont pris en compte pour une estimation juste.</p></div>
+<div class="faq-q">Achetez-vous tous les types de véhicules ? <span class="icon">+</span></div>
+<div class="faq-a"><p>Nous étudions chaque véhicule au cas par cas : état mécanique, kilométrage et documents sont pris en compte pour une estimation juste.</p></div>
 </div>
 <div class="faq-item fade-up">
-<button type="button" class="faq-q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5">Proposez-vous un devis gratuit ? <span class="icon" aria-hidden="true">+</span></button>
-<div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><p>Oui, chaque demande fait l'objet d'un devis gratuit et détaillé avant toute intervention.</p></div>
+<div class="faq-q">Proposez-vous un devis gratuit ? <span class="icon">+</span></div>
+<div class="faq-a"><p>Oui, chaque demande fait l'objet d'un devis gratuit et détaillé avant toute intervention.</p></div>
 </div>
 </div>
 </div>
@@ -676,7 +659,6 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 </div>
 </div>
 </section>
-</main>
 
 <footer>
 <div class="container footer-grid">
@@ -687,15 +669,15 @@ footer{padding:50px 0 30px;color:var(--text-secondary);font-size:0.85rem;}
 <a href="#tiktok">TikTok</a>
 <a href="#faq">FAQ</a>
 <a href="#contact">Contact</a>
-<button type="button" class="legal-link" id="legalOpenBtn" aria-haspopup="dialog">Mentions légales</button>
+<a class="legal-link" id="legalOpenBtn">Mentions légales</a>
 </div>
 </div>
 </footer>
 
 <div class="legal-overlay" id="legalOverlay">
-<div class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+<div class="legal-modal">
 <button class="legal-close" id="legalCloseBtn" aria-label="Fermer">✕</button>
-<h2 id="legalTitle">Mentions légales</h2>
+<h2>Mentions légales</h2>
 
 <h4>Éditeur du site</h4>
 <p>Reparetacaisse — Micro-entreprise</p>
@@ -780,19 +762,16 @@ document.querySelectorAll('.faq-item').forEach(item => {
   const q = item.querySelector('.faq-q');
   const a = item.querySelector('.faq-a');
   q.addEventListener('click', () => {
-    const isOpen = q.getAttribute('aria-expanded') === 'true';
-    document.querySelectorAll('.faq-q').forEach(btn => {
-      btn.setAttribute('aria-expanded', 'false');
-      btn.closest('.faq-item').querySelector('.faq-a').style.maxHeight = null;
-    });
-    if (!isOpen) { q.setAttribute('aria-expanded', 'true'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('active'); i.querySelector('.faq-a').style.maxHeight = null; });
+    if (!isActive) { item.classList.add('active'); a.style.maxHeight = a.scrollHeight + 'px'; }
   });
 });
 
 const burger = document.getElementById('burger');
 const navLinks = document.querySelector('.nav-links');
-function setMobileNavOpen(open){
-  navLinks.style.display = open ? 'flex' : 'none';
+burger.addEventListener('click', () => {
+  navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
   navLinks.style.position = 'absolute';
   navLinks.style.top = '70px';
   navLinks.style.left = '0';
@@ -802,14 +781,6 @@ function setMobileNavOpen(open){
   navLinks.style.padding = '24px';
   navLinks.style.gap = '18px';
   navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.05)';
-  burger.setAttribute('aria-expanded', String(open));
-  burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-}
-burger.addEventListener('click', () => {
-  setMobileNavOpen(navLinks.style.display !== 'flex');
-});
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => { setMobileNavOpen(false); });
 });
 
 const callBtn = document.getElementById('callNowBtn');
@@ -1137,19 +1108,9 @@ const legalOverlay = document.getElementById('legalOverlay');
 const legalOpenBtn = document.getElementById('legalOpenBtn');
 const legalCloseBtn = document.getElementById('legalCloseBtn');
 if (legalOpenBtn && legalOverlay && legalCloseBtn) {
-  function closeLegal(){
-    legalOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-    legalOpenBtn.focus();
-  }
-  legalOpenBtn.addEventListener('click', () => {
-    legalOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    legalCloseBtn.focus();
-  });
-  legalCloseBtn.addEventListener('click', closeLegal);
-  legalOverlay.addEventListener('click', (e) => { if (e.target === legalOverlay) closeLegal(); });
-  legalOverlay.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLegal(); });
+  legalOpenBtn.addEventListener('click', () => { legalOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  legalCloseBtn.addEventListener('click', () => { legalOverlay.classList.remove('open'); document.body.style.overflow = ''; });
+  legalOverlay.addEventListener('click', (e) => { if (e.target === legalOverlay) { legalOverlay.classList.remove('open'); document.body.style.overflow = ''; } });
 }
 </script>
 
